@@ -1,27 +1,66 @@
-# Laravel + React Starter Kit
+# Manrus API
 
-## Introduction
+API do Manrus, um aplicativo financeiro pensado para tornar o controle do dinheiro prático e colaborativo. Mais de uma pessoa pode registrar movimentações em um mesmo contexto financeiro, mantendo claro quem fez cada lançamento e permitindo acompanhar as finanças em conjunto.
 
-Our React starter kit provides a robust, modern starting point for building Laravel applications with a React frontend using [Inertia](https://inertiajs.com).
+## Visão do produto
 
-Inertia allows you to build modern, single-page React applications using classic server-side routing and controllers. This lets you enjoy the frontend power of React combined with the incredible backend productivity of Laravel and lightning-fast Vite compilation.
+O Manrus busca atender casais, famílias e outros grupos que precisam organizar despesas e receitas sem depender de uma única pessoa para manter os dados atualizados. Cada participante pode contribuir com os lançamentos e acompanhar a situação financeira compartilhada.
 
-This React starter kit utilizes React 19, TypeScript, Tailwind, and the [shadcn/ui](https://ui.shadcn.com) and [radix-ui](https://www.radix-ui.com) component libraries.
+O aplicativo deverá oferecer:
 
-## Official Documentation
+- **Colaboração:** várias pessoas registram e consultam movimentações do mesmo contexto financeiro.
+- **Rastreabilidade:** cada lançamento pode ser associado a quem o registrou.
+- **Visões sintéticas e analíticas:** acompanhamento rápido dos totais e exploração detalhada por período, categoria ou participante.
+- **Comparação entre contas:** por exemplo, visualizar lado a lado a conta do Vitor e a conta da Elie, além de entender o panorama compartilhado.
+- **Relatórios em conversa:** uso de IA para responder perguntas financeiras em chat e gerar relatórios com base nos dados relevantes do usuário.
 
-Documentation for all Laravel starter kits can be found on the [Laravel website](https://laravel.com/docs/starter-kits).
+A experiência de IA está planejada para usar RAG (geração aumentada por recuperação), buscando informações financeiras pertinentes antes de produzir uma resposta. Assim, os relatórios poderão se apoiar nos dados do próprio usuário em vez de depender apenas de conhecimento genérico do modelo.
 
-## Contributing
+## Estado atual
 
-Thank you for considering contributing to our starter kit! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+O projeto está em desenvolvimento. No momento, a API implementa operações CRUD para usuários:
 
-All contributions to the Starter Kits from now on should be made through [Maestro](https://github.com/laravel/maestro).
+| Método | Endpoint | Operação |
+| --- | --- | --- |
+| `GET` | `/api/users` | Listar usuários |
+| `POST` | `/api/users` | Criar usuário |
+| `GET` | `/api/users/{user}` | Consultar usuário |
+| `PUT` ou `PATCH` | `/api/users/{user}` | Atualizar usuário |
+| `DELETE` | `/api/users/{user}` | Remover usuário |
 
-## Code of Conduct
+Os recursos financeiros compartilhados, lançamentos, análises e relatórios com IA/RAG ainda fazem parte da visão do produto e não estão implementados nesta versão.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Tecnologias
 
-## License
+- PHP 8.3 ou superior
+- Laravel 13
+- Laravel Sanctum
+- PHPUnit
 
-The Laravel + React starter kit is open-sourced software licensed under the MIT license.
+## Desenvolvimento local
+
+1. Instale as dependências:
+
+	```bash
+	composer install
+	```
+
+2. Configure as variáveis de ambiente em `.env`, incluindo a conexão com o banco de dados.
+3. Gere a chave da aplicação e execute as migrations:
+
+	```bash
+	php artisan key:generate
+	php artisan migrate
+	```
+
+4. Inicie o servidor local:
+
+	```bash
+	php artisan serve
+	```
+
+As rotas da API usam o prefixo `/api`. Para executar as verificações de estilo, análise estática e testes:
+
+```bash
+composer ci:check
+```
