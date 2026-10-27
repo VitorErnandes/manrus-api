@@ -2,11 +2,24 @@
 
 namespace App\Http\Resources\User;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @mixin User
+ */
 class UserResource extends JsonResource
 {
+    /**
+     * @return array{
+     *     id: int,
+     *     name: string,
+     *     email: string,
+     *     created_at: string|null,
+     *     updated_at: string|null
+     * }
+     */
     public function toArray(Request $request): array
     {
         return [
